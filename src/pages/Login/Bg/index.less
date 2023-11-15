@@ -1,0 +1,78 @@
+.login-bg-con {
+  width: 100%;
+  height: 100%;
+
+  background-color: #4973eb;
+
+  position: relative;
+
+
+  .computer {
+    position: absolute;
+    bottom: 100px;
+    left: 20%;
+
+    img {
+      width: 300px;
+    }
+
+    .catch-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      color: #fff;
+      font-size: 24px;
+
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      line-height: 30px;
+
+      border-radius: 50%;
+      border: 2px solid #fff;
+
+      animation: catch-wave 1s forwards;
+    }
+
+
+    @keyframes catch-wave {
+      0% {
+        transform: scale(1.6);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .signal {
+      position: absolute;
+      top: -100px;
+      left: 0;
+
+      height: 100px;
+
+      transform: rotateX(180deg) scale(0.8);
+    }
+  }
+
+  .line-chart-con {
+    border-left: 8px solid #fff;
+    border-bottom: 8px solid #fff;
+    border-bottom-left-radius: 8px;
+
+    width: 300px;
+    height: 200px;
+
+    position: absolute;
+    top: 120px;
+    right: 20%;
+
+
+    .lines {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
