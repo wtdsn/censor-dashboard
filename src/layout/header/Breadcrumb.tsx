@@ -3,24 +3,7 @@
 import { Breadcrumb as AntdBreadcrumb } from "antd";
 
 import { useMatches, Link } from "react-router-dom";
-import menuList, { MenuItems } from "@/Route/menu";
-
-// 获取 path 到 label 的映射
-const path2LabelMap = (() => {
-  const map = new Map<string, string>();
-  function getPath2LabelMap(list: MenuItems[], basePath = "") {
-    list.forEach((item) => {
-      map.set(basePath + item.key, item.label);
-      if (item.children && item.children.length) {
-        getPath2LabelMap(item.children, basePath + item.key);
-      }
-    });
-  }
-
-  getPath2LabelMap(menuList);
-
-  return map;
-})();
+import menuList from "@/Route/menu";
 
 interface BreadcrumbItem {
   path?: string;
@@ -30,23 +13,26 @@ interface BreadcrumbItem {
 // 从 matches 获取面包屑
 function matchBreadCrumbs(matches: ReturnType<typeof useMatches>) {
   const items: BreadcrumbItem[] = [];
-
-  matches.forEach((m) => {
-    const title = path2LabelMap.get(m.pathname);
-    if (title) {
-      items.push({
-        title,
-        path: m.pathname,
-      });
-    }
+  let curMenu = menuList;
+  matches.forEach(({ pathname }) => {
+    curMenu.some((m) => {
+      if (m.key === pathname) {
+        curMenu = m.children || [];
+        items.push({
+          path: m.key,
+          title: m.label,
+        });
+        return true
+      } return false
+    })
   });
 
   return items;
 }
 
-function itemRender<T>(item: BreadcrumbItem, params: T, items: BreadcrumbItem[], paths: string[]) {
+function itemRender<T>(item: BreadcrumbItem, params: T, items: BreadcrumbItem[]) {
   const last = items.indexOf(item) === items.length - 1;
-  return last ? <span>{item.title}</span> : <Link to={paths.join('/')}>{item.title}</Link>;
+  return last ? <span>{item.title}</span> : <Link to={item.path!}>{item.title}</Link>;
 }
 
 export default function Breadcrumb() {

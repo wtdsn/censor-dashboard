@@ -8,14 +8,20 @@ import Projects from "@/pages/Projects/index";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Projects />,
-  },
-  {
-    path: "/dashboard",
     element: <Layout />,
     children: [
       {
-        path: "list",
+        index: true,
+        element: <Projects />,
+      }
+    ]
+  },
+  {
+    path: "/log",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
         Component: lazy(() => import('@/pages/List/index'))
       },
       {
@@ -34,6 +40,16 @@ const router = createBrowserRouter([
         Component: lazy(() => import('@/pages/StaticResourceList/index'))
       }
     ],
+  },
+  {
+    path: "/notice",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        Component: lazy(() => import('@/pages/Notice/index'))
+      }
+    ]
   },
   {
     path: "/login",

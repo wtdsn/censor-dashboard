@@ -2,24 +2,16 @@ import { Layout, Menu } from 'antd';
 import Logo from './Logo/logo'
 
 import menuList from '@/Route/menu';
-import { useLocation, useNavigate, useMatches } from "react-router-dom";
+import { useNavigate, useMatches } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
 const AntdSider = Layout.Sider;
 
 function Sider({ collapsed }: { collapsed: boolean }) {
-  const location = useLocation()
+  // const location = useLocation()
   const navi = useNavigate()
 
   const matches = useMatches()
-
-
-  useEffect(() => {
-    if (location.pathname === '/dashboard' || location.pathname === '/dashboard/') {
-      navi('/dashboard/list')
-    }
-  }, [location.pathname, navi])
-
 
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   useEffect(() => {
@@ -39,10 +31,9 @@ function Sider({ collapsed }: { collapsed: boolean }) {
   }, [matches])
 
 
-  const menuClick = ({ keyPath }: { keyPath: string[] }) => {
-    const path = keyPath.reduce((pre, cur) => cur + pre)
-    console.log('=========menuClick=========', path)
-    navi(path)
+  const menuClick = ({ key }: { key: string }) => {
+    console.log('=========menuClick=========', key)
+    navi(key)
   }
 
   return (
@@ -51,7 +42,8 @@ function Sider({ collapsed }: { collapsed: boolean }) {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['/dashboard/list']}
+        defaultSelectedKeys={['/']}
+        defaultOpenKeys={['/log']}
         selectedKeys={selectedKeys}
         items={menuList}
         onClick={menuClick}

@@ -1,5 +1,5 @@
 import { createFromIconfontCN } from "@ant-design/icons";
-
+const scriptUrl = "//at.alicdn.com/t/c/font_4332414_w9shsh8tm0m.js";
 export default createFromIconfontCN({
-	scriptUrl: "//at.alicdn.com/t/c/font_4332414_h8hm3uxiai.js", // 在 iconfont.cn 上生成
+	scriptUrl,
 });
