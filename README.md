@@ -16,7 +16,7 @@
 ### node 类型
 在使用 node 包时，ts 会报错
 安装
-`pnpm install @types/node --D`
+`pnpm install @types/node --D` 
 
 ### 路径别名
 vite.congif.ts 配置路径别名

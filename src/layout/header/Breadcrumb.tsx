@@ -30,7 +30,7 @@ function matchBreadCrumbs(matches: ReturnType<typeof useMatches>) {
   return items;
 }
 
-function itemRender<T>(item: BreadcrumbItem, params: T, items: BreadcrumbItem[]) {
+function itemRender<T>(item: BreadcrumbItem, _params: T, items: BreadcrumbItem[]) {
   const last = items.indexOf(item) === items.length - 1;
   return last ? <span>{item.title}</span> : <Link to={item.path!}>{item.title}</Link>;
 }

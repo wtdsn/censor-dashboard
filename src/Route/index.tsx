@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 import { lazy } from 'react'
 import Layout from "@/layout/index";
-import Projects from "@/pages/Projects/index";
+import TeamManager from "@/pages/Team/index";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Projects />,
+        element: <TeamManager />,
       }
     ]
   },

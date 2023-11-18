@@ -1,7 +1,7 @@
 import { Layout, Menu } from 'antd';
 import Logo from './Logo/logo'
 
-import menuList from '@/Route/menu';
+import { renderMenuList } from '@/Route/menu';
 import { useNavigate, useMatches } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
@@ -16,7 +16,7 @@ function Sider({ collapsed }: { collapsed: boolean }) {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   useEffect(() => {
     const keys: string[] = []
-    let curMenue = menuList
+    let curMenue = renderMenuList
     matches.forEach(({ pathname }) => {
       curMenue.some(m => {
         if (m.key === pathname) {
@@ -45,7 +45,7 @@ function Sider({ collapsed }: { collapsed: boolean }) {
         defaultSelectedKeys={['/']}
         defaultOpenKeys={['/log']}
         selectedKeys={selectedKeys}
-        items={menuList}
+        items={renderMenuList}
         onClick={menuClick}
       />
     </AntdSider>

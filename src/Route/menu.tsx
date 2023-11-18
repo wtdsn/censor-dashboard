@@ -4,6 +4,7 @@ export interface MenuItems {
   key: string,
   label: string,
   icon?: React.ReactNode,
+  hiden?: boolean,
   children?: MenuItems[]
 }
 
@@ -13,7 +14,7 @@ export interface MenuItems {
 const menuList: MenuItems[] = [
   {
     key: "/",
-    label: "项目管理",
+    label: "团队管理",
     icon: <FontIcon type="icon-xiangmu" />
   },
   {
@@ -49,6 +50,22 @@ const menuList: MenuItems[] = [
     label: "通知管理",
     icon: <FontIcon type="icon-tixing" />
   }]
+
+function getRenderMenuList(menuList: MenuItems[]) {
+  return menuList.reduce((res, preItem) => {
+    const item = { ...preItem }
+    if (item.hiden) return res
+    if (item.children) {
+      item.children = getRenderMenuList(item.children)
+      if (item.children.length === 0) delete item.children
+    }
+    res.push(item)
+    return res
+  }, [] as MenuItems[])
+}
+console.log(getRenderMenuList(menuList));
+
+export const renderMenuList = getRenderMenuList(menuList)
 
 
 export default menuList
