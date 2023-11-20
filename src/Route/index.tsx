@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         Component: lazy(() => import('@/pages/List/index'))
       },
       {
-        path: "error-list",
-        Component: lazy(() => import('@/pages/ErrorList/index'))
+        path: "error-log",
+        Component: lazy(() => import('@/pages/ErrorLog/index'))
       },
       {
         path: "behavior-list",

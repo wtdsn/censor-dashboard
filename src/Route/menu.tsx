@@ -27,7 +27,7 @@ const menuList: MenuItems[] = [
         label: "总列表",
         icon: <FontIcon type="icon-list" />
       }, {
-        key: "/log/error-list",
+        key: "/log/error-log",
         label: "错误日志",
         icon: <FontIcon type="icon-error" />
       }, {
